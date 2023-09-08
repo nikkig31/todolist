@@ -1,0 +1,47 @@
+<body>
+  <div class="wrapper">
+    <h1 class="text-center">TO DO LIST</h1>
+    <div class="task-input d-flex">
+      <input type="text" placeholder="Add a New Task" [(ngModel)]="add" />
+
+      <button
+        class="btn btn-danger mt-3 ms-2"
+        style="height: 30px; width: 50px"
+        (click)="added()"
+      >
+        Add
+      </button>
+    </div>
+    <ul
+      class="task-box"
+      style="list-style-type: none"
+      *ngFor="let td of storetodo; let i = index"
+    >
+      <li>
+        <div class="d-flex" style="justify-content: space-between">
+          <div>
+            <input type="checkbox" (click)="index(i)" />
+            <span *ngIf="!td.toCheck"
+              >{{ i + 1 }} - {{ td.task }} &nbsp;&nbsp;
+            </span>
+            <span *ngIf="td.toCheck" style="text-decoration: line-through"
+              >{{ i + 1 }} - {{ td.task }} &nbsp;&nbsp;
+            </span>
+          </div>
+          <div class="d-flex" style="gap: 8px">
+            <i
+              class="bi bi-pencil-square"
+              (click)="edit(i)"
+              style="font-size: 20px"
+            ></i>
+            <i
+              class="bi bi-trash3"
+              (click)="dlt(i)"
+              style="font-size: 20px"
+            ></i>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
